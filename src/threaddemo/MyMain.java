@@ -16,25 +16,23 @@ public class MyMain extends Thread {
             System.out.println("i = " + i);
             // sleep for 1 sec
             // call sleep method of Thread class
-            try {
-                Thread.sleep(500);
 
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 
     public static void main(String[] args) {
         Thread threadMyMain = new MyMain();
+        threadMyMain.setPriority(Thread.MAX_PRIORITY);
         // how to execute this thread
         // by calling start method
         System.out.println("threadMyMain.getState() = " + threadMyMain.getState());
-        threadMyMain.start();
+
         System.out.println("threadMyMain.getState() = " + threadMyMain.getState());
         MyRunnable myRunnable = new MyRunnable();
         Thread threadMyRunnable = new Thread(myRunnable);
+        threadMyRunnable.setPriority(Thread.MIN_PRIORITY);
         threadMyRunnable.start();
+        threadMyMain.start();
 
 
 
